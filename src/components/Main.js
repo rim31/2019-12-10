@@ -11,12 +11,13 @@ export default class Main extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);// RECHERCHER button
     this.handleChange = this.handleChange.bind(this);// formulaire de recherche
     this.state = {
-        data          : [],    
-        region        :'',
-        prixmin       :'',
+        data          :[],
+        resultat      :{},    
+        region        :'Paris',
+        prixmin       :'0',
         categorie     :'location',
-        prixmax       :'',
-        pieces        :'',
+        prixmax       :'500',
+        pieces        :'1',
     };
 
   }
@@ -40,9 +41,9 @@ export default class Main extends Component {
         .setQuery("renove")
         .setFilter(leboncoin.FILTERS.PARTICULIER)
         .setCategory("locations")
-        .setRegion("ile_de_france")
-        .addSearchExtra("price", {min: 1500, max: 2000}) // will add a range of price
-        .addSearchExtra('furnished', ["1", "Non meublé"]); // will add enums for Meublé and Non meublé
+        .setRegion(this.state.region)
+        .addSearchExtra("price", {min: this.state.prixmin, max: this.state.prixmax}) // will add a range of price
+        .addSearchExtra('furnished', [this.state.pieces, "Non meublé"]); // will add enums for Meublé and Non meublé
 
         // problème de CORS
         // headers.append('Access-Control-Allow-Origin', 'http://localhost:3000');
@@ -66,7 +67,8 @@ export default class Main extends Component {
         console.error(err);
       }); 
           // test resultat car pb de cors
-          return {position:{x:42, y:42}};
+          // il faut convertir le resultat en coordonées
+          return {res: [{x:42, y:42}, {x:1, y:1}]};
       }
       
         resarch() {
@@ -84,27 +86,27 @@ export default class Main extends Component {
         <form onSubmit={this.handleSubmit}>
         <div className="field">
           <div className="control">
-            <input className="input is-danger"  name="Categorie" placeholder="Categorie" type="text" value={this.state.categorie} onChange={this.handleChange} />
+            Catégorie<input className="input is-danger"  name="Categorie" placeholder="Categorie" type="text" value={this.state.categorie} onChange={this.handleChange} />
           </div>
         </div>
         <div className="field">
           <div className="control">
-            <input className="input is-danger"  name="region" placeholder="Région" type="text" value={this.state.region} onChange={this.handleChange} />
+            Région<input className="input is-danger"  name="region" placeholder="Région" type="text" value={this.state.region} onChange={this.handleChange} />
           </div>
         </div>
         <div className="field">
           <div className="control">
-            <input className="input is-danger"  name="prixmin" placeholder="Prix min" type="number" value={this.state.prixmin} onChange={this.handleChange} />
+            prix min<input className="input is-danger"  name="prixmin" placeholder="Prix min" type="number" value={this.state.prixmin} onChange={this.handleChange} />
           </div>
         </div>
         <div className="field">
           <div className="control">
-            <input className="input is-danger"  name="prixmax" placeholder="Prix max" type="number" value={this.state.prixmax} onChange={this.handleChange} />
+            prix max<input className="input is-danger"  name="prixmax" placeholder="Prix max" type="number" value={this.state.prixmax} onChange={this.handleChange} />
           </div>
         </div>
         <div className="field">
           <div className="control">
-            <input className="input is-danger"  name="pieces" placeholder="Nb pièces" type="number" value={this.state.pieces} onChange={this.handleChange} />
+            pièces <input className="input is-danger"  name="pieces" placeholder="Nb pièces" type="number" value={this.state.pieces} onChange={this.handleChange} />
           </div>
         </div>
           <input  className="button"  type="submit" value="Rechercher" />

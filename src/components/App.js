@@ -9,8 +9,22 @@ class App extends Component {
     super(props);
     this.state = {
       data          : [],//response fetch url
+      resultats: [
+        {
+          x:50.023,
+          y:10.044
+        },
+        {
+          x:50.123,
+          y:10.244
+        },
+        {
+          x:50.233,
+          y:10.140
+        },
+      ]
     };
-  }
+    }
 
   render() {
     return (
@@ -20,7 +34,7 @@ class App extends Component {
             <Main />
           </div>
           <div className="column">
-              <Mymap />
+              <Mymap resultats={this.state.resultats}/>
           </div>
         </div>
         <div className="columns">

@@ -10,8 +10,8 @@ class Mymap extends React.Component {
   render() {
     return (
       <LeafletMap className="leaflet-container"
-        center={[50, 10]}
-        zoom={6}
+        center={[50.02, 10.04]}
+        zoom={4}
         maxZoom={10}
         attributionControl={true}
         zoomControl={true}
@@ -24,11 +24,23 @@ class Mymap extends React.Component {
         <TileLayer
           url='http://{s}.tile.osm.org/{z}/{x}/{y}.png'
         />
-        <Marker position={[50, 10]}>
+        <Marker position={[50.0231, 10.0441]}>
           <Popup>
-            Popup for any custom information.
+            test.
           </Popup>
         </Marker>
+         {//parcous du tableau des 20 pokémons et afichage de leurs image et leurs noms
+            this.props.resultats.map((resultMap, key) =>
+            <div className="marker" key={key}>
+              <Marker position={[resultMap.x, resultMap.x]}>
+                <Popup>
+                  x : {resultMap.x}, y : {resultMap.y}
+                </Popup>
+              </Marker>
+
+            </div>)
+          }
+
       </LeafletMap>
     );
   }

@@ -23,11 +23,11 @@ class Results extends React.Component {
   render() {
     return (
       
-      <div>
+      <div className="">
           {/* {this.props.resultats.map((resultMap, key) => */}
-          <div className="columns is-desktop">
+          <div className="columns is-desktop resultats">
           {this.state.resultats.map((resultMap, key) =>
-            <div className="column" key={key} id={resultMap.name}  onClick={() => {this.handleSelect(resultMap.name)}}>
+            <div className="result" key={key}>
                 bien : pièces, prix
                   <p>x : {resultMap.x}</p>
                   <p>y : {resultMap.y}</p>

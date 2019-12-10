@@ -41,3 +41,20 @@
   height: 400px;
   width: 800px;
 }
+
+.resultats {
+  display: inline-flex;
+  flex-direction: row;
+  margin: 10px;
+  background-color: beige;
+  border-radius: 5px;
+}
+
+.result {
+  display: inline-flex;
+  flex-direction: row;
+  margin: 10px;
+  background-color: white;
+  border-radius: 5px;
+  border: 10px;
+}
