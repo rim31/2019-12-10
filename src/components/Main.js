@@ -112,7 +112,7 @@ export default class Main extends Component {
           <input  className="button"  type="submit" value="Rechercher" />
         </form>
         </div>
-            <button className="button" onClick={() => {this.resarch()}} variant="contained" color="primary">Search leboncoin</button> 
+            {/* <button className="button" onClick={() => {this.resarch()}} variant="contained" color="primary">Search leboncoin</button>  */}
       </div>
     );
   }
